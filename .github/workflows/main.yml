@@ -11,10 +11,10 @@ jobs:
         id: setup-ffmpeg
       - run: ffmpeg -y -i https://jbilcke-hf-media-server.hf.space/live/comedy.flv -t 0:15:00 -c copy -loglevel quiet comedy.mkv
 
-      - name: commit and push 
+
+      - name: Upload to githubusercontent.com
         run: |
-          git config --global user.name "${{ secrets.USERNAME_GITHUB }}"
-          git config --global user.email "${{ secrets.EMAIL_GITHUB }}"
-          git add comedy.mkv
-          git commit -m "updated file"
-          git push
+          curl --upload-file ${{ github.workspace }}/comedy.mkv https://githubusercontent.com/santi-nue/comedy.mkv
+
+
+
