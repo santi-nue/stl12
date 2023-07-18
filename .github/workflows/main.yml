@@ -1,0 +1,20 @@
+name: ffmpeg Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: FedericoCarboni/setup-ffmpeg@v2
+        id: setup-ffmpeg
+      - run: ffmpeg -i https://jbilcke-hf-media-server.hf.space/live/comedy.flv -t 0:01:00 -c copy comedy.mkv
+
+      - name: commit and push 
+        run: |
+          git config --global user.name "${{ secrets.USERNAME_GITHUB }}"
+          git config --global user.email "${{ secrets.EMAIL_GITHUB }}"
+          git add comedy.mkv
+          git commit -m "updated file"
+          git push
