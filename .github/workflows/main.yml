@@ -11,8 +11,6 @@ jobs:
         id: setup-ffmpeg
       - run: ffmpeg -y -i https://jbilcke-hf-media-server.hf.space/live/comedy.flv -t 0:15:00 -c copy -loglevel quiet comedy.mkv
 
-
-
       - name: Upload image
         run: |
           curl -X POST \
