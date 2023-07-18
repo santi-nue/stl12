@@ -12,9 +12,21 @@ jobs:
       - run: ffmpeg -y -i https://jbilcke-hf-media-server.hf.space/live/comedy.flv -t 0:15:00 -c copy -loglevel quiet comedy.mkv
 
 
-      - name: Upload to githubusercontent.com
+
+      - name: Upload image
         run: |
-          curl --upload-file ${{ github.workspace }}/comedy.mkv https://githubusercontent.com/santi-nue/comedy.mkv
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -d '{
+              "message": "Upload image",
+              "committer": {
+                "name": "santi-nue",
+                "email": "your@email.com"
+              },
+              "content": "<base64-encoded-image-content>"
+            }' \
+            https://api.github.com/repos/santi-nue/stl12/contents/comedy.mkv
 
 
 
