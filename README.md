@@ -1,6 +1,6 @@
 # stl12
 
 
-![Alt Text](https://github.com/santi-nue/stl12/blob/main/comedy.mp4)
+![Alt Text](https://raw.githubusercontent.com/santi-nue/stl12/main/.github/images/comedy.mp4)
 
 
